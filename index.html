@@ -5,8 +5,98 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyecto Final Andrisani Facundo</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
-<body>
+<body class="container-fluid">
+    <main class="row flex-nowrap">
+        <header class="col-2 barralateral">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100">
+                <a href="#" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                    <span class="fs-5 d-none d-sm-inline"><iconify-icon icon="ion:football" width="15" height="15"></iconify-icon> PFAndrisani</span>
+                </a>
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link align-middle px-0">
+                            <i class="fs-4"></i> <span class="ms-1 d-none d-sm-inline">Inicio</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                            <i class="fs-4 "></i> <span class="ms-1 d-none d-sm-inline">Quien soy:</span> </a>
+                        <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a href="https://www.instagram.com/" class="nav-link px-0" target="_blank"> <span class="d-none d-sm-inline"><iconify-icon icon="akar-icons:instagram-fill" width="15" height="15"></iconify-icon> Instagram</span></a>
+                            </li>
+                            <li class="w-100">
+                                <a href="https://twitter.com/" class="nav-link px-0" target="_blank"><span class="d-none d-sm-inline"><iconify-icon icon="akar-icons:twitter-fill" width="15" height="15"></iconify-icon> Twitter</span></a>
+                            </li>
+                            <li class="w-100">
+                                <a href="https://www.facebook.com/" class="nav-link px-0" target="_blank"> <span class="d-none d-sm-inline"><iconify-icon icon="akar-icons:facebook-fill" width="15" height="15"></iconify-icon> Facebook</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                <hr>   
+                <hr>
+                <hr>   
+                <hr>
+                <hr>   
+                <hr>
+                <hr>   
+                <hr>
+                <hr>   
+                <hr>
+                <hr>  
+                <hr>   
+                <hr>
+                <hr> 
+                <div class="dropdown pb-4">
+                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://pbs.twimg.com/profile_images/574633842151063552/hRVGICQA_400x400.png" alt="fordeperfil" width="30" height="30" class="rounded-circle">
+                        <span class="d-none d-sm-inline mx-1">Usuario</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                        <li><a class="dropdown-item" href="#">Perfil</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="index.html">Salir</a></li>
+                    </ul>
+                </div>
+            </div>  
+        </header>
+        <div class="col-10 fondo">
+            <div>
+                <h1 class="text-center fs-1">Proyecto Final Andrisani</h1>
+            </div>
+            <h3>Jugadores aceptados:</h3>
+            <div id="carrito">
+        
+            </div>
+            <h3>Jugadores rechazados:</h3>
+            <div>
+                
+            </div>
+            <h3>Jugadores en espera:</h3>
+            <div id="productos">
+               
+            </div>
+            <h3>Agregar jugadores:</h3>
+            <form id="agregar-productos">
+              <input type="text" name="descripcion" id="descripcion" placeholder="descripcion del producto...">
+              <input type="number" name="precio" id="precio" placeholder="precio del producto">
+              <button type="submit">Agregar producto</button>
+            </form>
+        </div>
+    </main>
+    <footer class="row text-center">
+        <p>Hecha por: Facundo Andrisani</p>
+    </footer>
+    <script src="./js/swal.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="./js/finaljs.js"></script>  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.0/iconify-icon.min.js"></script>
 </body>
 </html>

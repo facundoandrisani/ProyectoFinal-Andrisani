@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  font-family: "Slabo 27px", serif;
+}
+
+.barralateral{
+    background-color: #040A2C;
+    border-right: 2px solid yellow;
+}
+
+.fondo{
+    background-color: rgb(240, 227, 227);
+}
+
+footer{
+    background-color: #32364B;
+    color: rgb(240, 227, 227);
+    padding: 5px;
+    border-top: 2px solid yellow;
+}
+
+header span:hover {
+    color: rgba(156, 156, 3, 0.692);
+}
