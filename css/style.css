@@ -7,6 +7,12 @@
   font-family: "Slabo 27px", serif;
 }
 
+.titulos{
+    color: #000000;
+    font-weight: bold;
+    background-color: rgb(255, 255, 255);
+}
+
 .barralateral{
     background-color: #040A2C;
     border-right: 2px solid yellow;
@@ -25,4 +31,14 @@ footer{
 
 header span:hover {
     color: rgba(156, 156, 3, 0.692);
+}
+
+.letra{
+    font-weight: bold;
+}
+
+button{
+    position: relative;
+    background-color: rgba(139, 148, 180, 0.587);
+    border: 0.1px solid black;
 }

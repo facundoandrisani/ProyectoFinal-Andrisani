@@ -1,5 +1,6 @@
 const carritoDOM = document.getElementById('carrito');
 const productosDOM = document.getElementById('productos');
+const rechazadosDOM = document.getElementById('rechazados');
 const formAgregarProducto = document.getElementById('agregar-productos');
 
 let productos = [
@@ -18,12 +19,13 @@ let productos = [
 ];
 
 let carrito = [];
+let rechazar = [];
 
 let idContadora = 0;
 
-function Producto(descripcion, precio, posicion, valor, clubactual) {
+function Producto(descripcion, edad, posicion, valor, clubactual) {
   this.descripcion = descripcion;
-  this.precio = precio;
+  this.edad = edad;
   this.posicion = posicion;
   this.valor = valor;
   this.clubactual = clubactual;
@@ -34,11 +36,16 @@ function renderProductos() {
   productos.forEach(producto => {
     let divProducto = document.createElement('div');
     let btnAgregarAlCarrito = document.createElement('button');
+    let btnRechazarJugador = document.createElement('button');
 
     btnAgregarAlCarrito.innerText = 'Aceptar';
+    btnRechazarJugador.innerText = 'Rechazar';
     btnAgregarAlCarrito.onclick = () => agregarProductoAlCarrito(producto);
-    divProducto.innerText = producto.descripcion;
+    divProducto.innerText = producto.descripcion + " - " +  producto.posicion + " - " + producto.edad + " - " + " $" + producto.valor + " - " +  producto.clubactual + "  -  ";
+    btnRechazarJugador.onclick = () => rechazarJugadorAccion(producto);
+    divProducto.innerText = producto.descripcion + " - " +  producto.posicion + " - " + producto.edad + " - " + " $" + producto.valor + " - " +  producto.clubactual + "  -  ";
     divProducto.appendChild(btnAgregarAlCarrito);
+    divProducto.appendChild(btnRechazarJugador);
 
     productosDOM.appendChild(divProducto);
   })
@@ -52,7 +59,7 @@ function renderCarrito() {
 
     btnQuitarDelCarrito.innerText = 'Quitar';
     btnQuitarDelCarrito.onclick = () => quitarProductoAlCarrito(producto);
-    divProducto.innerText = producto.descripcion;
+    divProducto.innerText = producto.descripcion + " - " +  producto.posicion + " - " + producto.edad + " - " + " $" + producto.valor + " - " + producto.clubactual + "  -  ";
     divProducto.appendChild(btnQuitarDelCarrito);
 
     carritoDOM.appendChild(divProducto);
@@ -66,12 +73,18 @@ function agregarProductoAlCarrito(producto) {
     showCancelButton: true,
     confirmButtonText: 'Aceptar',
     denyButtonText: `No aceptar`,
+    confirmButtonColor: '#040A2C ',
+    denyButtonColor: '#B4B4B2',
+    cancelButtonColor: '#B4B4B2',
   }).then((result) => {
     if (result.isConfirmed) {
       Toastify({
         text: "Jugador agregado",
         duration: 2500,
-        gravity: "bottom"
+        gravity: "bottom",
+        style: {
+          background: "linear-gradient(to right, #5B9759 , #069601)",
+        }
       }).showToast();
       let productoCarrito = {
         ...producto,
@@ -85,27 +98,90 @@ function agregarProductoAlCarrito(producto) {
   })
 }
 
+function renderRechazados() {
+  rechazadosDOM.innerHTML = '';
+  rechazar.forEach(producto => {
+    let divRechazo = document.createElement('div');
+    let btnQuitarDelCarritoRechazados = document.createElement('button');
+
+    btnQuitarDelCarritoRechazados.innerText = 'Quitar';
+    btnQuitarDelCarritoRechazados.onclick = () => quitarRechazo(producto);
+    divRechazo.innerText = producto.descripcion + " - " +  producto.posicion + " - " + producto.edad + " - " + " $" + producto.valor + " - " + producto.clubactual + "  -  ";
+    divRechazo.appendChild(btnQuitarDelCarritoRechazados);
+
+    rechazadosDOM.appendChild(divRechazo);
+  })
+}
+
+
+function rechazarJugadorAccion(producto) {
+  Swal.fire({
+    title: `¿Desea rechazar a ${producto.descripcion}?`,
+    showDenyButton: true,
+    showCancelButton: true,
+    confirmButtonText: 'Si',
+    denyButtonText: `No`,
+    confirmButtonColor: '#A2280D ',
+    denyButtonColor: '#B4B4B2',
+    cancelButtonColor: '#B4B4B2',
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Toastify({
+        text: "Jugador rechazado",
+        duration: 2500,
+        gravity: "bottom",
+        style: {
+          background: "linear-gradient(to right, #EEA4B1 , #F0062D)",
+        }
+      }).showToast();
+      let jugadorRechazado = {
+        ...producto,
+        id: idContadora++
+      }
+      rechazar.push(jugadorRechazado);
+      renderRechazados();
+    } else if (result.isDenied) {
+      Swal.fire('No se rechazo el jugador', '', 'info')
+    }
+  })
+}
+
 function quitarProductoAlCarrito(producto) {
   carrito = carrito.filter(productoCarrito => producto.id !== productoCarrito.id);
   renderCarrito();
+}
+
+function quitarRechazo(producto) {
+  rechazar = rechazar.filter(jugadorRechazado => producto.id !== jugadorRechazado.id);
+  renderRechazados();
 }
 
 formAgregarProducto.addEventListener('submit', function(event) {
   event.preventDefault();
 
   const inputDescripcion = document.getElementById('descripcion');
-  const inputPrecio = document.getElementById('precio');
+  const inputPosicion = document.getElementById('posicion');
+  const inputEdad = document.getElementById('edad');
+  const inputValor = document.getElementById('valor');
+  const inputEquipo = document.getElementById('clubactual');
 
   const descripcion = inputDescripcion.value;
-  const precio = Number(inputPrecio.value);
+  const posicion = inputPosicion.value;
+  const edad = Number(inputEdad.value);
+  const valor = Number(inputValor.value);
+  const clubactual = inputEquipo.value;
 
-  const producto = new Producto(descripcion, precio);
+  const producto = new Producto(descripcion, posicion, edad, valor, clubactual);
   productos.push(producto);
   renderProductos();
 
   inputDescripcion.value = '';
-  inputPrecio.value = '';
+  inputPosicion.value = '';
+  inputEdad.value = '';
+  inputValor.value = '';
+  inputEquipo.value = '';
 })
 
 renderProductos();
 renderCarrito();
+renderRechazados();
