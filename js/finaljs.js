@@ -185,3 +185,37 @@ formAgregarProducto.addEventListener('submit', function(event) {
 renderProductos();
 renderCarrito();
 renderRechazados();
+
+let reloj = document.getElementById('reloj');
+
+let intervaloReloj = setInterval(function() {
+  let fecha = new Date();
+  let textoReloj = `${fecha.getDate()},${fecha.getMonth()},${fecha.getFullYear()} ${fecha.getHours()}:${fecha.getMinutes()}:${fecha.getSeconds()}`;
+
+  reloj.innerText = textoReloj;
+}, 1000);
+
+
+function pedirDatosDeProducto() {
+  return new Promise(function(resolve, reject) {
+    setTimeout(function() {
+      let todoOk = true;
+      if (todoOk) {
+        resolve(carrito);
+      } else {
+        reject(rechazar);
+      }
+    }, 2000);
+  });
+}
+
+pedirDatosDeProducto()
+  .then(function(aceptados) {
+    console.log('Jugadores aceptados', aceptados);
+  })
+  .catch(function(error) { //Cuando la promesa pasa a estado rejected->rechazada
+    console.log('Jugadores rechazados', error);
+  })
+  .finally(function() {
+    console.log('Promesa finalizada');
+  })
