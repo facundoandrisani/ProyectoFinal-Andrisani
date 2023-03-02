@@ -219,3 +219,29 @@ pedirDatosDeProducto()
   .finally(function() {
     console.log('Promesa finalizada');
   })
+
+  function ajax() {
+    const http = new XMLHttpRequest();
+
+    http.onreadystatechange = function(){
+      if(this.readyState == 4 && this.status == 200) { 
+        let cuerpoTecnico = JSON.parse(this.responseText);
+        //console.log(cuerpoTecnico);
+        let respuesta = document.querySelector('#respuesta');
+        respuesta.innerHTML = '';
+        
+        for(let item of cuerpoTecnico){
+          //console.log(item.nombre);
+          respuesta.innerHTML += `
+          ${item.nombre} /${item.puesto}/ - 
+          `     
+        }
+      }    
+    }
+    http.open("get", "jugadores.json");
+    http.send();
+  }
+
+  document.getElementById("botonAjax").addEventListener("click", function(){
+    ajax();
+  })
